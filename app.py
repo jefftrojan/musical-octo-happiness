@@ -2,6 +2,7 @@ import joblib
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from uvicorn import Config, Server
+import asyncio
 
 # Load the trained model
 model = joblib.load('potability.pkl')
@@ -44,8 +45,11 @@ async def make_prediction(water_request: WaterRequest):
         return {"predicted_portability": predicted_portability[0][0]}
     except Exception as e:
         raise HTTPException(status_code=500, detail="Something went wrong.")
-
-if __name__ == "__main__":
+async def serve():
     config = Config(app)
     server = Server(config)
+    await server.serve()
+
+if __name__ == "__main__":
+    asyncio.run(serve())
     await server.serve()
