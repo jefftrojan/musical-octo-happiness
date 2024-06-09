@@ -1,3 +1,4 @@
+from http import server
 import joblib
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
@@ -52,4 +53,3 @@ async def serve():
 
 if __name__ == "__main__":
     asyncio.run(serve())
-    await server.serve()
