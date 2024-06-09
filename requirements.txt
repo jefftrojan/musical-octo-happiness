@@ -1,4 +1,9 @@
 joblib
+uvicorn
+asyncio
 fastapi
 pydantic
 uvicorn
+tensorflow
+scikit-learn
+keras
